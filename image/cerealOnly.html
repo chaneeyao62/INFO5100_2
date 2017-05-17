@@ -335,16 +335,28 @@ function collide(alpha) {
         value = +this.value;
 
         node.filter(function(d){
-    console.log(d);
+    //console.log(d);
           var fullColor=[];
-         
-          if((d.cluster == 0 && d.index >= 0 && d.index<Math.round(proteinData)*0.2)||(d.cluster==1 && d.index>=20 && d.index<20+Math.round(fatData))||(d.cluster==2 && d.index>=40 && d.index<40+Math.round(carbData))||(d.cluster==3 && d.index>=60 && d.index<60+Math.round(fiberData))||(d.cluster==4 && d.index>=80 && d.index<80+Math.round(sugarData))||(d.cluster==5 && d.index>=100 && d.index<100+Math.round(calciumData))||(d.cluster==6 && d.index>=120 && d.index<120+Math.round(vitaminData))) {
+    // console.log(Math.round(proteinData*0.2);
+    // console.log(Math.round(fatData)*0.2);
+    // console.log(Math.round(carbData)*0.2);
+    // console.log(Math.round(fiberData)*0.2);
+    // console.log(Math.round(sugarData)*0.2);
+
+          if((d.cluster == 0 && d.index >= 0 && d.index<Math.round(proteinData*0.2))||
+             (d.cluster==1 && d.index>=20 && d.index<20+Math.round(fatData*0.2))||
+             (d.cluster==2 && d.index>=40 && d.index<40+Math.round(carbData*0.2))||
+             (d.cluster==3 && d.index>=60 && d.index<60+Math.round(fiberData*0.2))||
+             (d.cluster==4 && d.index>=80 && d.index<80+Math.round(sugarData*0.2))||
+             (d.cluster==5 && d.index>=100 && d.index<100+Math.round(calciumData*0.2))||
+             (d.cluster==6 && d.index>=120 && d.index<120+Math.round(vitaminData*0.2))){
           fullColor.push(d.index);
           }else{
             fullColor.push(1000000);
           }
           console.log(fullColor);
-          return d.index==fullColor;
+          //return d.cluster==2;
+           return d.index==fullColor;
         })
         .style("opacity", "1");
         } 
