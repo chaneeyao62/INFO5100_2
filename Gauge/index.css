@@ -1,0 +1,29 @@
+/*svg { border: solid #ccc 10px; }*/
+
+.labelValue
+{
+  font-size: 60%;
+  opacity: .5;
+  
+}
+
+div#radios label{
+  font-weight: 300;
+  font-size: 1.5em;
+  padding: 25px 25px 25px 45px;
+  margin: 10px auto;
+  font-family: FANTASY;
+  height: 30px;
+  z-index: 9;
+  cursor: pointer;
+  -webkit-transition: all 0.25s linear;
+}
+
+div#radios form{
+  padding: 25px 25px 35px 45px;
+  height: 45px;
+}
+
+div#radios {
+  height: 85px;
+}
