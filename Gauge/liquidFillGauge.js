@@ -8,7 +8,7 @@
 function liquidFillGaugeDefaultSettings(){
     return {
         minValue: 0, // The gauge minimum value.
-        maxValue: 100, // The gauge maximum value.
+        maxValue: 200, // The gauge maximum value.
         circleThickness: 0.05, // The outer circle thickness as a percentage of it's radius.
         circleFillGap: 0.05, // The size of the gap between the outer circle and wave circle as a percentage of the outer circles radius.
         circleColor: "#178BCA", // The color of the outer circle.
@@ -109,8 +109,8 @@ function loadLiquidFillGauge(elementId, value, config) {
 
     // Draw the outer circle.
     var gaugeCircleArc = d3.svg.arc()
-        .startAngle(gaugeCircleX(0.20))
-        .endAngle(gaugeCircleX(0.80))
+        .startAngle(gaugeCircleX(0.25))
+        .endAngle(gaugeCircleX(0.75))
         .outerRadius(gaugeCircleY(radius))
         .innerRadius(gaugeCircleY(radius-circleThickness));
     gaugeGroup.append("path")
