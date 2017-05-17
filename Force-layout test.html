@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script type='text/javascript' src="http://bost.ocks.org/mike/fisheye/fisheye.js?0.0.3"> </script>
+<script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
+<div id="legend">
+  <h1>Filter</h3>
+  <div class="input" id="filters">
+  
+      <label>
+        <input type="radio" name="filter" value="0">    
+        <img src="1.jpg" alt="apple jack" style="width:250px;height:350px;">
+    </label>
+
+      <label>
+        <input type="radio" name="filter" value="1"> 
+        <img src="2.png" alt="cheerio" style="width:300px;height:350px;">
+    </label>
+
+      <label>
+        <input type="radio" name="filter" value="2"> 
+        <img src="3.jpg" alt="coco" style="width:300px;height:350px;">
+    </label>
+ 
+    </div>
+  </div>
+<style>
+label > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #f00;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+d3-tip {
+    line-height: 1;
+    color: black;
+}
+</style>
+
+<script>
+
+d3.json("cereal.json", function (error, data){
+
+  createCereal(data);
+
+});
+
+
+function createCereal(data1){
+
+//fipsValue, proteinValue, proteinNumber
+
+var width = 960,
+    height = 700,
+    padding = 10, // separation between same-color nodes
+    clusterPadding = 20, // separation between different-color nodes
+    maxRadius = 12;
+
+//reference: http://jsfiddle.net/cyril123/1ag52e8s/
+var nodeEachCluster=[10,15,20,25,30,35];
+var n = d3.sum(nodeEachCluster, function (d) {
+    return d
+}); // total number of nodes
+var m = nodeEachCluster.length; // number of distinct clusters
+var color = d3.scale.category10()
+    .domain(d3.range(m));
+
+// The largest node for each cluster.
+var clusters = new Array(m);
+
+var nodes = [];
+
+nodeEachCluster.forEach(function(cn,i){
+
+    var r=6;
+    for (var j=0;j<cn; j++){
+     var d = {
+        cluster: i,
+        radius: r,
+        x: Math.cos(i / m * 2 * Math.PI) * 200 + width / 2 + Math.random(),
+        y: Math.sin(i / m * 2 * Math.PI) * 200 + height / 2 + Math.random()
+      };
+
+  if (!clusters[i] || (r > clusters[i].radius)) clusters[i] = d;
+  nodes.push(d);  
+
+    }
+
+});
+
+
+var force = d3.layout.force()
+    .nodes(nodes)
+    .size([width, height])
+    .gravity(.02)
+    .charge(0)
+    .on("tick", tick)
+    .start();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+    var fisheye = d3.fisheye.circular()
+      .radius(120);
+svg.on("mousemove", function() {
+      force.stop();
+      fisheye.focus(d3.mouse(this));
+      d3.selectAll("circle").each(function(d) { d.fisheye = fisheye(d); })
+          .attr("cx", function(d) { return d.fisheye.x; })
+          .attr("cy", function(d) { return d.fisheye.y; })
+          .attr("r", function(d) { return d.fisheye.z * 8; });
+      link.attr("x1", function(d) { return d.source.fisheye.x; })
+          .attr("y1", function(d) { return d.source.fisheye.y; })
+          .attr("x2", function(d) { return d.target.fisheye.x; })
+          .attr("y2", function(d) { return d.target.fisheye.y; });
+    });
+
+
+var node = svg.selectAll("circle")
+    .data(nodes)
+  .enter().append("circle")
+    .style("fill", "none")
+    .style("stroke", function(d) { return color(d.cluster); })
+    .style("stroke-width", 5)
+    .style("opacity", 0.2)
+    .call(force.drag);
+
+node.transition()
+    .duration(750)
+    .delay(function(d, i) { return i * 5; })
+    .attrTween("r", function(d) {
+      var i = d3.interpolate(0, d.radius);
+      return function(t) { return d.radius = i(t); };
+    });
+
+function tick(e) {
+  node
+      .each(cluster(10 * e.alpha * e.alpha))
+      .each(collide(.5))
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
+}
+
+// Move d to be adjacent to the cluster node.
+function cluster(alpha) {
+  return function(d) {
+    var cluster = clusters[d.cluster];
+    //console.log(d.cluster);
+    if (cluster === d) return;
+    var x = d.x - cluster.x,
+        y = d.y - cluster.y,
+        l = Math.sqrt(x * x + y * y),
+        r = d.radius + cluster.radius;
+    if (l != r) {
+      l = (l - r) / l * alpha;
+      d.x -= x *= l;
+      d.y -= y *= l;
+      cluster.x += x;
+      cluster.y += y;
+    }
+  };
+}
+// //Set up tooltip
+// var tip = d3.tip()
+//     .attr('class', 'd3-tip')
+//     .offset([-10, 0])
+//     .html(function (d) {
+//     return  d.name + "";
+// })
+// svg.call(tip);
+
+// var node = svg.selectAll(".node")
+//     .data(graph.nodes)
+//     .enter().append("circle")
+//     .attr("class", "node")
+//     .attr("r", 5)
+//     .style("fill", function (d) {
+//     return color(d.group);
+// })
+//     .call(force.drag)
+//  .on('mouseover', tip.show) //Added
+//  .on('mouseout', tip.hide); //Added 
+// Resolves collisions between d and all other circles.
+function collide(alpha) {
+  var quadtree = d3.geom.quadtree(nodes);
+  return function(d) {
+    var r = d.radius + maxRadius + Math.max(padding, clusterPadding),
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+    quadtree.visit(function(quad, x1, y1, x2, y2) {
+      if (quad.point && (quad.point !== d)) {
+        var x = d.x - quad.point.x,
+            y = d.y - quad.point.y,
+            l = Math.sqrt(x * x + y * y),
+            r = d.radius + quad.point.radius + (d.cluster === quad.point.cluster ? padding : clusterPadding);
+        if (l < r) {
+          l = (l - r) / l * alpha;
+          d.x -= x *= l;
+          d.y -= y *= l;
+          quad.point.x += x;
+          quad.point.y += y;
+        }
+      }
+      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+    });
+  };
+}
+//console.log(data1);
+  d3.selectAll("input[name=filter]").on("change", function(d){
+ 
+      // value of selected radio
+      var value = +this.value;
+
+      var proteinData=data1[value].protein;
+      var sodiumData=data1[value].sodium;
+      var fiberData=data1[value].fiber;
+      var sugarData=data1[value].sugars;
+      var vitaminData=data1[value].vitamins;
+      var caloryData=data1[value].calories;
+
+      node.style("opacity", 0.2);
+      
+      // those that aren't dim
+      if (value == this.value){
+        value = +this.value;
+
+        node.filter(function(d){
+        //protein
+          var light=[];
+          //console.log(d);
+          if((d.cluster==0 && d.index>=0 && d.index<proteinData)||(d.cluster==1 && d.index>=10 && d.index<10+sodiumData)||(d.cluster==2 && d.index>=25 && d.index<25+fiberData)||(d.cluster==3 && d.index>=45 && d.index<45+sugarData)||(d.cluster==4 && d.index>=70 && d.index<70+vitaminData)||(d.cluster==5 && d.index>=100 && d.index<100+caloryData)) {
+          light.push(d.index);
+          }else{
+            light.push(1000000);
+          }
+          console.log(light);
+          return d.index==light;
+        })
+        .style("opacity", "1");
+        } 
+        // else{
+        //   value = +this.value;
+
+        //  }
+      
+
+      //     if (value == "3"){
+      // //   value = +this.value;
+      //   node.filter(function(d){
+
+      //     return d.cluster == 3;
+
+      //   })
+      //   .style("opacity", "1");
+      
+      // }
+      
+    });
+}
+</script>
