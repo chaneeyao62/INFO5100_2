@@ -4,195 +4,180 @@
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script type='text/javascript' src="http://bost.ocks.org/mike/fisheye/fisheye.js?0.0.3"> </script>
 <script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
-<div id="legend">
+<script src="javascript/liquidFillGauge.js" language="JavaScript"></script>
+<style>
+label.wall > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label.wall > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #f00;
+}
+
+</style>
+
   <h1>Who Moved My Cereal Bowl? <br> 
     An amazing way to figure out the nutrition facts in your cereal bowl
   </h1>
   <div class="input" id="filters">
   
-      <label>
+      <label class="wall">
         <input type="radio" name="filter" value="0">    
         <img src="images/0.jpg" alt="All Barn" style="width:100px;height:150px;">
     </label>
 
-      <label>
+      <label class="wall">
         <input type="radio" name="filter" value="1"> 
         <img src="images/1.jpg" alt="Special K" style="width:100px;height:150px;">
     </label>
 
-      <label>
+      <label class="wall">
         <input type="radio" name="filter" value="2"> 
         <img src="images/2.jpg" alt="raisen barn" style="width:100px;height:150px;">
     </label>
 
-   <label>
+   <label class="wall">
         <input type="radio" name="filter" value="3"> 
         <img src="images/3.jpg" alt="pops" style="width:100px;height:150px;">
     </label>
 
-    <label>
+    <label class="wall">
         <input type="radio" name="filter" value="4"> 
         <img src="images/4.jpg" alt="corn flakes" style="width:100px;height:150px;">
     </label>
    <br>
 
-    <label>
+    <label class="wall">
         <input type="radio" name="filter" value="5"> 
         <img src="images/5.jpg" alt="fruit loop" style="width:100px;height:150px;">
     </label>
  
-        <label>
+        <label class="wall">
         <input type="radio" name="filter" value="6"> 
         <img src="images/6.jpg" alt="corn flakes" style="width:100px;height:150px;">
     </label>
 
-        <label>
+        <label class="wall">
         <input type="radio" name="filter" value="7"> 
         <img src="images/7.jpg" alt="apple jack" style="width:100px;height:150px;">
     </label>
 
-        <label>
+        <label class="wall">
         <input type="radio" name="filter" value="8"> 
         <img src="images/8.jpg" alt="krispies" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="9"> 
         <img src="images/9.jpg" alt="rice krispies" style="width:100px;height:150px;">
     </label>
     <br>
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="10"> 
         <img src="images/10.jpg" alt="cheerios" style="width:100px;height:150px;">
     </label>
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="11"> 
         <img src="images/11.jpg" alt="chex" style="width:100px;height:150px;">
     </label>
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="12"> 
         <img src="images/12.jpg" alt="corn chex" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="13"> 
         <img src="images/13.jpg" alt="fiber one" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="14"> 
         <img src="images/14.jpg" alt="reeces puff" style="width:100px;height:150px;">
     </label>
    <br>
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="15"> 
         <img src="images/15.jpg" alt="coca puffs" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="16"> 
         <img src="images/16.jpg" alt="lucky charm" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="17"> 
         <img src="images/17.jpg" alt="boo berry" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="18"> 
         <img src="images/18.jpg" alt="trix" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="19"> 
         <img src="images/19.jpg" alt="cookie crisps" style="width:100px;height:150px;">
     </label>
    <br>
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="20"> 
         <img src="images/20.jpg" alt="corn flakes" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="21"> 
         <img src="images/21.jpg" alt="blue berry morning" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="22"> 
         <img src="images/22.jpg" alt="honey comb" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="23"> 
         <img src="images/23.jpg" alt="raisen barn" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="24"> 
         <img src="images/24.jpg" alt="shredded wheat" style="width:100px;height:150px;">
     </label>
    <br>
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="25"> 
         <img src="images/25.jpg" alt="barn flakes" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="26"> 
         <img src="images/26.jpg" alt="wraffle crips" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="27"> 
         <img src="images/27.jpg" alt="alpha bit" style="width:100px;height:150px;">
     </label>
 
-            <label>
+            <label class="wall">
         <input type="radio" name="filter" value="28"> 
         <img src="images/28.jpg" alt="crisp" style="width:100px;height:150px;">
     </label>
 
-    <label>
+    <label class="wall">
         <input type="radio" name="filter" value="29"> 
         <img src="images/29.jpg" alt="coca pebble" style="width:100px;height:150px;">
     </label>
-   <br>
-
     </div>
 
-  <div id = "milk">
-    <div id = "radios">
-  <form>
-  <label><input type="radio" name="dataset" value="CalciumPer" checked> Calcium</label>
-  <label><input type="radio" name="dataset" value="ProteinPer"> Protein</label>
-  <label><input type="radio" name="dataset" value="VitaminPer"> Vitamin</label>
-  <label><input type="radio" name="dataset" value="FatPer"> Fat</label>
-  <label><input type="radio" name="dataset" value="SugarPer"> Sugar</label>
-  </form>
-  </div>
-  <svg id="fillgauge2" width="15%" height="200" onclick="gauge2.update(NewValue());"></svg>
-  <svg id="fillgauge3" width="15%" height="200" onclick="gauge3.update(NewValue());"></svg>
-  <svg id="fillgauge4" width="15%" height="200" onclick="gauge4.update(NewValue());"></svg>
-  <svg id="fillgauge5" width="15%" height="200" onclick="gauge5.update(NewValue());"></svg>
-  <svg id="fillgauge6" width="15%" height="200" onclick="gauge6.update(NewValue());"></svg>
-  </div>
-  </div>
-<style>
-label > input{ /* HIDE RADIO */
-  visibility: hidden; /* Makes input not-clickable */
-  position: absolute; /* Remove input from document flow */
-}
-label > input + img{ /* IMAGE STYLES */
-  cursor:pointer;
-  border:2px solid transparent;
-}
-label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-  border:2px solid #f00;
-}
-
-</style>
+    <div id = "milk">
+      
+    </div>
 
 <script>
 
