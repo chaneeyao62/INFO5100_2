@@ -37,6 +37,10 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
     
   }
 
+html{
+  padding: 10px 30px 10px 30px;
+}
+
   div#radios label{
     font-weight: 300;
     font-size: 1.5em;
@@ -65,6 +69,15 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
     color:purple;
   }
 
+  ul li{
+  display: inline;
+  padding: 0px 28px 5px 28px;
+  }
+
+  ul{
+    padding: 0px 0px 0px 0px;
+  }
+
   div#radios form{
 
     height: 45px;
@@ -75,12 +88,12 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
   }
 
   div#Gauge {
-    padding: 25px 25px 55px 5px;
+    padding: 25px 25px 25px 5px;
   }
 
   svg.cerealBowl {
     position: absolute;
-    top: 150px;
+    top: 160px;
     right: 10px;
 }
 
@@ -134,7 +147,7 @@ padding:5px;
   </div>
 <br>
 
-<p> Step 1: Compare and pick your faviorite milk </p>
+<h1> Step 1: Click on the bowl icon <br> and pick your faviorite milk </h1>
   <div id = "radios">
   <form>
   <label id="cal" ><input class="milkbtt" type="radio" name="dataset" value="CalciumPer" checked> Calcium</label>
@@ -152,8 +165,16 @@ padding:5px;
     <svg id="fillgauge6" width="8%" height="100" onclick="addMilkUpdate(4);"></svg>
   </div>
 
+<ul id = "tags">
+<li>2%</li>
+<li>Almond Milk</li>
+<li>Non Fat</li>
+<li>Soy Milk</li>
+<li>Whole Milk</li>
+</ul>
 
-  <p> Step 2 Pick your favorite cereal </p>
+
+  <h1> Step 2 Pick your favorite cereal </h1>
   <div id="one" class="main">
     <span class="arrow">&#9654;</span>
     <p> Kellogg's </p>
