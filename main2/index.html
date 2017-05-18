@@ -584,6 +584,12 @@ var svg = d3.select("body").append("svg")
         .attr("y", width/3.8)
         .attr("height", 450);
 
+      var img3=g.append("svg:image")
+        .attr("xlink:href", "images/legend.png")
+        .attr("x", 100)
+        .attr("y", height-180)
+        .attr("height", "20%");
+
 
 var node = svg.selectAll("circle")
     .data(nodes)
