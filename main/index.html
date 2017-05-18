@@ -215,6 +215,15 @@ var calciumData_temp = 0;
 var vitaminData_temp = 0;
 var energyData_temp = 0;
 
+var proteinData_temp_1 = 0;
+var fatData_temp_1 = 0;
+var carbData_temp_1 = 0;
+var fiberData_temp_1 = 0;
+var sugarData_temp_1 = 0;
+var calciumData_temp_1 = 0;
+var vitaminData_temp_1 = 0;
+var energyData_temp_1 = 0;
+
 var milk;
 
 var proteinData_temp_2 = 0;
@@ -485,14 +494,24 @@ function createCereal(data1){
       var value = this.value;
 
 
-      proteinData+=data1[value].ProteinPercent - proteinData_temp;
-      fatData+=data1[value].FatPercent - fatData_temp;
-      carbData+=data1[value].CarbPercent - carbData_temp;
-      fiberData+=data1[value].FiberPercent - fiberData_temp;
-      sugarData+=data1[value].SugPercent - sugarData_temp;
-      calciumData+=data1[value].CalPercent - calciumData_temp;
-      vitaminData+=data1[value].VitPercent - vitaminData_temp;
-      energyData+=data1[value].Energy - energyData_temp;
+      proteinData+=data1[value].ProteinPercent - proteinData_temp_1;
+      fatData+=data1[value].FatPercent - fatData_temp_1;
+      carbData+=data1[value].CarbPercent - carbData_temp_1;
+      fiberData+=data1[value].FiberPercent - fiberData_temp_1;
+      sugarData+=data1[value].SugPercent - sugarData_temp_1;
+      calciumData+=data1[value].CalPercent - calciumData_temp_1;
+      vitaminData+=data1[value].VitPercent - vitaminData_temp_1;
+      energyData+=data1[value].Energy - energyData_temp_1;
+
+      proteinData_temp_1 = data1[value].ProteinPercent;
+      fatData_temp_1 = data1[value].FatPercent;
+      carbData_temp_1 = data1[value].CarbPercent;
+      fiberData_temp_1 = data1[value].FiberPercent;
+      sugarData_temp_1 = data1[value].SugPercent;
+      calciumData_temp_1 = data1[value].CalPercent;
+      vitaminData_temp_1 = data1[value].VitPercent;
+      energyData_temp_1 = data1[value].Energy;
+
 
       proteinData_temp = proteinData;
       fatData_temp = fatData;
