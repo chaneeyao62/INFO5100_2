@@ -53,7 +53,7 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
   svg.cerealBowl {
     position: absolute;
     top: 300px;
-    right: 100px;
+    right: 10px;
 }
 
 #one,#two,#three
@@ -471,8 +471,8 @@ function addMilkUpdate(value){
 
 //fipsValue, proteinValue, proteinNumber
 
-    var width = 700,
-        height =700,
+    var width = 900,
+        height =900,
         padding = 10, // separation between same-color nodes
         clusterPadding = 20, // separation between different-color nodes
         maxRadius = 12;
@@ -534,10 +534,9 @@ var svg = d3.select("body").append("svg")
       
       var img2=g.append("svg:image")
         .attr("xlink:href", "images/spoon.jpg")
-        .attr("x", 70)
+        .attr("x", 600)
         .attr("y", 70)
-        .attr("height", 720)
-        .attr("width", 204);
+        .attr("height", 450);
 
 
 var node = svg.selectAll("circle")
