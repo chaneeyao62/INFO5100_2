@@ -40,7 +40,7 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
   div#radios label{
     font-weight: 300;
     font-size: 1.5em;
-    padding: 25px 25px 25px 45px;
+    padding: 25px 25px 25px 5px;
     margin: 10px auto;
     font-family: 'Roboto Condensed', sans-serif;
     height: 30px;
@@ -55,17 +55,21 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
   }
 
   div#radios {
-    height: 85px;
+    height: 15px;
+  }
+
+  div#Gauge {
+    padding: 25px 25px 55px 5px;
   }
 
   svg.cerealBowl {
     position: absolute;
     top: 150px;
-    right: 30px;
+    right: 10px;
 }
 
 div#radios {
-    padding: 225px 25px 35px 45px;
+    padding: 25px 25px 5px 5px;
 }
 
 
@@ -125,7 +129,27 @@ padding:5px;
     <img src="images/header.png" alt="head" style="width:1200px;height:300px;">
   </div>
 <br>
-  <p> Step 1 Pick your favorite cereal </p>
+
+<p> Step 1: Compare and pick your faviorite milk </p>
+  <div id = "radios">
+  <form>
+  <label><input class="milkbtt" type="radio" name="dataset" value="CalciumPer" checked> Calcium</label>
+  <label><input class="milkbtt" type="radio" name="dataset" value="ProteinPer"> Protein</label>
+  <label><input class="milkbtt" type="radio" name="dataset" value="VitaminPer"> Vitamin</label>
+  <label><input class="milkbtt" type="radio" name="dataset" value="FatPer"> Fat</label>
+  <label><input class="milkbtt" type="radio" name="dataset" value="SugarPer"> Sugar</label>
+  </form>
+  </div>
+  <div id = "Gauge">
+    <svg id="fillgauge2" width="8%" height="100" onclick="addMilkUpdate(0);"></svg>
+    <svg id="fillgauge3" width="8%" height="100" onclick="addMilkUpdate(1);"></svg>
+    <svg id="fillgauge4" width="8%" height="100" onclick="addMilkUpdate(2);"></svg>
+    <svg id="fillgauge5" width="8%" height="100" onclick="addMilkUpdate(3);"></svg>
+    <svg id="fillgauge6" width="8%" height="100" onclick="addMilkUpdate(4);"></svg>
+  </div>
+
+
+  <p> Step 2 Pick your favorite cereal </p>
   <div id="one" class="main">
     <span class="arrow">&#9654;</span>
     <p> Kellogg's </p>
@@ -303,23 +327,7 @@ padding:5px;
     <br>
     </div>
 </div>
-<p> Step 2: Compare and pick your faviorite milk </p>
-  <div id = "radios">
-  <form>
-  <label><input class="milkbtt" type="radio" name="dataset" value="CalciumPer" checked> Calcium</label>
-  <label><input class="milkbtt" type="radio" name="dataset" value="ProteinPer"> Protein</label>
-  <label><input class="milkbtt" type="radio" name="dataset" value="VitaminPer"> Vitamin</label>
-  <label><input class="milkbtt" type="radio" name="dataset" value="FatPer"> Fat</label>
-  <label><input class="milkbtt" type="radio" name="dataset" value="SugarPer"> Sugar</label>
-  </form>
-  </div>
-  <div id = "Gauge">
-    <svg id="fillgauge2" width="15%" height="200" onclick="addMilkUpdate(0);"></svg>
-    <svg id="fillgauge3" width="15%" height="200" onclick="addMilkUpdate(1);"></svg>
-    <svg id="fillgauge4" width="15%" height="200" onclick="addMilkUpdate(2);"></svg>
-    <svg id="fillgauge5" width="15%" height="200" onclick="addMilkUpdate(3);"></svg>
-    <svg id="fillgauge6" width="15%" height="200" onclick="addMilkUpdate(4);"></svg>
-  </div>
+
 
 <div id="work_queues_chart" />
 <button id="update1">Male</button>
@@ -487,8 +495,8 @@ function addMilkUpdate(value){
 
 //fipsValue, proteinValue, proteinNumber
 
-    var width = 900,
-        height =900,
+    var width = 800,
+        height =800,
         padding = 10, // separation between same-color nodes
         clusterPadding = 20, // separation between different-color nodes
         maxRadius = 12;
@@ -542,16 +550,16 @@ var svg = d3.select("body").append("svg")
       var g=svg.append("g");
       var img=g.append("svg:image")
         .attr("xlink:href", "images/bowl.jpg")
-        .attr("x", 140)
-        .attr("y", 140)
+        .attr("x", width/8.2)
+        .attr("y", height/8.2)
         .attr("height", 650)
         .attr("width", 650);
 
       
       var img2=g.append("svg:image")
-        .attr("xlink:href", "images/spoon.jpg")
-        .attr("x", 790)
-        .attr("y", 280)
+        .attr("xlink:href", "images/spoon.png")
+        .attr("x", width-100)
+        .attr("y", width/3.8)
         .attr("height", 450);
 
 
