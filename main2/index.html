@@ -12,8 +12,10 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 <style>
 
+
 body{
   font-family: 'Roboto Condensed', sans-serif;
+
 }
 label.wall > input{ /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
@@ -66,6 +68,8 @@ div#radios {
     padding: 225px 25px 35px 45px;
 }
 
+
+
 #one,#two,#three
 {
     height:50px;
@@ -81,7 +85,7 @@ div#radios {
 {
     padding:5px;
     float:right;
-    color:#000;
+    color:#fff;
 }
 .sub
 {
@@ -726,19 +730,19 @@ function draw(barGraph) {
 
 
 function update() {
-    var maleData = [4];
+    var maleData = [966];
     maleData.push(energyData); 
     draw(maleData);
 };
 function update2() {
    
-    var femaleData = [20];
+    var femaleData = [733];
     femaleData.push(energyData); 
     draw(femaleData);
 };
 function update3() {
     
-    var adultData = [30];
+    var adultData = [];
     adultData.push(energyData); 
     draw(adultData);
 };
