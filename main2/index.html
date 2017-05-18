@@ -471,8 +471,8 @@ function addMilkUpdate(value){
 
 //fipsValue, proteinValue, proteinNumber
 
-    var width = 500,
-        height = 500,
+    var width = 700,
+        height =700,
         padding = 10, // separation between same-color nodes
         clusterPadding = 20, // separation between different-color nodes
         maxRadius = 12;
@@ -522,6 +522,22 @@ var svg = d3.select("body").append("svg")
     .attr("class", "cerealBowl")
     .attr("width", width)
     .attr("height", height);
+
+      var g=svg.append("g");
+      var img=g.append("svg:image")
+        .attr("xlink:href", "images/bowl.jpg")
+        .attr("x", 30)
+        .attr("y", 30)
+        .attr("height", 500)
+        .attr("width", 500);
+
+      
+      var img2=g.append("svg:image")
+        .attr("xlink:href", "spoonicon.png")
+        .attr("x", 5)
+        .attr("y", 5)
+        .attr("height", 200)
+        .attr("width", 200);
 
 
 var node = svg.selectAll("circle")
