@@ -6,6 +6,8 @@
 <script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
 <script src="javascript/liquidFillGauge.js" language="JavaScript"></script>
 <script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 <style>
 label.wall > input{ /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
@@ -54,12 +56,52 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
     right: 100px;
 }
 
+#one,#two,#three
+{
+    height:50px;
+    width:560px;
+    border:1px solid #000;
+    background-color:#fff;
+    margin: 0px 5px;
+    overflow:hidden;
+}
+
+.arrow
+{
+    padding:5px;
+    float:right;
+    color:#000;
+}
+.sub
+{
+    height:320px;
+    width:540px;
+   display:none;
+    border:1px solid #000;
+    background-color:#fff;
+    margin:0px 5px 5px;
+    padding:10px;
+   
+   
+}
+#one p,#two p,#three p
+{
+padding:5px;
+
+}
 </style>
 
   
   <div class="header" id="header">
     <img src="images/header.png" alt="head" style="width:1200px;height:300px;">
   </div>
+
+  <div id="one" class="main">
+    <span class="arrow">&#9654;</span>
+    <p> Kellogg's </p>
+  </div>
+  <div class="sub">
+
   <div class="input" id="filters">
   
       <label class="wall">
@@ -113,6 +155,15 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
         <img src="images/9.jpg" alt="rice krispies" style="width:100px;height:150px;">
     </label>
     <br>
+  </div>
+</div>
+
+<div id="two" class="main"> 
+<span class="arrow">&#9654;</span>
+<p> General Mill </p>
+</div>
+  <div class="sub">
+    <div class="input" id="filters">
             <label class="wall">
         <input type="radio" name="filter" value="10"> 
         <img src="images/10.jpg" alt="cheerios" style="width:100px;height:150px;">
@@ -161,6 +212,15 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
         <img src="images/19.jpg" alt="cookie crisps" style="width:100px;height:150px;">
     </label>
    <br>
+     </div>
+</div>
+
+<div id="three" class="main"> 
+<span class="arrow">&#9654;</span>
+<p> POST </p>
+</div>
+  <div class="sub">
+    <div class="input" id="filters">
             <label class="wall">
         <input type="radio" name="filter" value="20"> 
         <img src="images/20.jpg" alt="corn flakes" style="width:100px;height:150px;">
@@ -210,7 +270,9 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
         <input type="radio" name="filter" value="29"> 
         <img src="images/29.jpg" alt="coca pebble" style="width:100px;height:150px;">
     </label>
+    <br>
     </div>
+</div>
 
   <div id = "radios">
   <form>
@@ -231,6 +293,21 @@ label.wall > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 
 <script>
 
+//the following code get reference from: http://jsfiddle.net/SzR6h/25/
+$('.main').click(function() {
+    var $el = $(this);
+    
+    // reset all
+    $('.sub').slideUp("slow");
+    $('.arrow').html("&#9654;");
+    
+   
+    // set current
+    $el.next('.sub').slideDown("slow");
+    $('.arrow', $el).html("&#9660;");
+
+
+});
 
 var initVal = [59, 90, 60, 60, 55];
 var proteinData = 0;
