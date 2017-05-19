@@ -157,7 +157,7 @@ padding:5px;
   </div>
 <br>
 
-<h1> Step 1: Compare nutrition facts of milk &  <br> Click on the small bowl icon to add your <br> faviorite milk (1Cup) to your cereal bowl </h1>
+<h1> Step 1: Compare nutrition facts of milk &  <br> Click on the small bowl icon to add your <br> faviorite milk (1 Cup) to your cereal bowl </h1>
   <div id = "radios">
   <form>
   <label id="cal" ><input class="milkbtt" type="radio" name="dataset" value="CalciumPer" checked> Calcium</label>
@@ -184,7 +184,7 @@ padding:5px;
 </ul>
 
 
-  <h1> Step 2: Add your favorite cereal (1 Cup) </h1>
+  <h1> Step 2: Add your favorite cereal (1 NLEA Serving) </h1>
   <div id="one" class="main">
     <span class="arrow">&#9654;</span>
     <p> Kellogg's </p>
@@ -696,14 +696,12 @@ function changeNodeCol(proteinData, fatData, carbData, fiberData, sugarData, cal
           }else{
             fullColor.push(1000000);
           }
-          // console.log(fullColor);
-          //return d.cluster==2;
+
            return d.index==fullColor;
         })
         .style("opacity", "1");
 }
 
-//console.log(data1);
 
 function createCereal(data1){
   d3.selectAll("input[name=filter]").on("change", function(d){
@@ -749,6 +747,7 @@ function createCereal(data1){
 
 //reference:http://jsfiddle.net/UBf9y/
 //http://bl.ocks.org/brattonc/5e5ce9beee483220e2f6
+//http://plnkr.co/edit/Yr1WKeuSXX6Ij0nfvEYu?p=preview
 
 
 }
