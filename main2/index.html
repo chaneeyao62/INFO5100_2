@@ -748,72 +748,10 @@ function createCereal(data1){
 
 
 //reference:http://jsfiddle.net/UBf9y/
+//http://bl.ocks.org/brattonc/5e5ce9beee483220e2f6
+
 
 }
 
-
-function draw(barGraph) {
-    var scale = d3.scale.linear()
-        .domain([0, 50])
-        .range([0, 100]);
-
-    var bars = d3.select("#work_queues_chart")
-        .selectAll("div")
-        .attr("id","work_queues_chart")
-        .data(barGraph);
-     
-    // enter selection
-    bars
-        .enter().append("div");
-
-    // update selection
-    bars
-        .style("width", function (d) {return scale(d) + "%";})
-        .text(function (d) {return d;});
-    
-    // exit selection
-    bars
-        .exit().remove();
-};
-
-
-function update() {
-    var maleData = [966];
-    maleData.push(energyData); 
-    draw(maleData);
-};
-function update2() {
-   
-    var femaleData = [733];
-    femaleData.push(energyData); 
-    draw(femaleData);
-};
-function update3() {
-    
-    var adultData = [850];
-    adultData.push(energyData); 
-    draw(adultData);
-};
-function update4() {
-
-    var childrenData = [533];
-    childrenData.push(energyData); 
-    draw(childrenData);
-};
-
-var data123 = [];
-window.onload = draw(data123);
-
-d3.select('#update1')
-    .on("click",update);
-
-d3.select('#update2')
-    .on("click",update2);   
-
-d3.select('#update3')
-    .on("click",update3);   
-
-d3.select('#update4')
-    .on("click",update4);
 
 </script>
